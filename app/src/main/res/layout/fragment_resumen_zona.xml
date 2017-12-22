@@ -1,0 +1,23 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.evertvd.greendaoinventario.vista.fragments.FrmResumenZona">
+
+    <include
+        layout="@layout/header_resumen_zona"></include>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerResumenZona"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp">
+    </android.support.v7.widget.RecyclerView>
+
+    <include
+        layout="@layout/footer_resumen_zona"></include>
+
+
+</FrameLayout>

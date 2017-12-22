@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:orderInCategory="101"
+        android:title="Configuración"
+        android:icon="@drawable/ic_menu_item"
+        app:showAsAction="always">
+        <menu>
+
+            <item
+                android:id="@+id/action_exportar"
+                android:orderInCategory="100"
+                android:icon="@drawable/ic_export"
+                android:title="Generar Reportes"
+                app:showAsAction="ifRoom|withText" />
+
+            <item
+                android:id="@+id/action_email"
+                android:orderInCategory="100"
+                android:icon="@drawable/ic_email"
+                app:showAsAction="ifRoom|withText"
+                android:title="Envíar Email" />
+        </menu>
+    </item>
+
+
+
+
+
+</menu>

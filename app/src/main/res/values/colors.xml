@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>-->
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#3F51B5</color>
+
+    <!-- For PagerTitleStrip -->
+    <color name="azure">#33B5E5</color>
+    <color name="white">#FFF</color>
+
+    <!--Otros Colores-->
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorGreen">#4CAF50</color>
+    <color name="colorRed">#F44336</color>
+    <color name="colorOrange">#FF9800</color>
+    <color name="colorGreyLighten_3">#EEEEEE</color>
+    <color name="colorGreyDarken_2">#616161</color>
+    <color name="colorGreyLighten_1">#bdbdbd</color>
+    <color name="grey_darken_4">#212121</color>
+    <color name="black">#000000</color>
+
+    <!--Calculador-->
+    <color name="colorInversePrimaryText">#FFFFFF</color>
+    <color name="colorPrimaryButton">#2196F3</color>
+    <color name="colorSuccessButton">#0F9D58</color>
+    <color name="colorDangerButton">#FF5252</color>
+
+    <color name="pad_numeric_background_color">#434343</color>
+    <color name="pad_operator_background_color">#636363</color>
+
+
+    <!-- -->
+    <color name="colorFuncBtnBackground">#cccccc</color>
+    <color name="colorFuncBtnText">#00796b</color>
+    <color name="colorNumBtnBackground">#dddddd</color>
+    <color name="colorNumBtnText">#333333</color>
+
+</resources>

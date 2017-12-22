@@ -1,0 +1,44 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".vista.fragments.FrmNuevoProducto">
+
+    <!-- TODO: Update blank fragment layout-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtSinRegistros"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:text="Sin productos registrados"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview_nuevo_producto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnNuevoProducto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end|right"
+            app:backgroundTint="@color/grey_darken_4"
+            app:useCompatPadding="true"
+            android:tint="@color/colorWhite"
+            android:src="@drawable/ic_menu_add" />
+
+    </RelativeLayout>
+
+</FrameLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_inventario"
+            android:icon="@drawable/ic_menu_inventario"
+            android:title="Inventario" />
+        <item
+            android:id="@+id/nav_diferencias"
+            android:icon="@drawable/ic_menu_diferencia"
+            android:title="Diferencia" />
+        <item
+            android:id="@+id/nav_resumen"
+            android:icon="@drawable/ic_menu_resumen"
+            android:title="Resumen" />
+        <item
+            android:id="@+id/nav_nuevo_Producto"
+            android:icon="@drawable/ic_menu_add"
+            android:title="Registrar Producto" />
+    </group>
+
+    <item android:title="Opciones">
+        <menu>
+            <item
+                android:id="@+id/nav_manual"
+                android:icon="@drawable/ic_menu_manual"
+                android:title="Manual de Usuario" />
+            <item
+                android:id="@+id/nav_cerrarSesion"
+                android:icon="@drawable/ic_close_sesion"
+                android:title="Cerrar Sesión" />
+        </menu>
+    </item>
+
+</menu>
