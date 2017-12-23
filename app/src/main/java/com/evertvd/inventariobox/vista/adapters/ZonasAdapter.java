@@ -1,7 +1,10 @@
 package com.evertvd.inventariobox.vista.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,33 +36,29 @@ import java.util.List;
 
 public class ZonasAdapter extends RecyclerView.Adapter<ZonasAdapter.ViewHolder> implements ItemClickListener {
 
-    private Context contexto;
+    //private Context contexto;
     private List<Zona> zonaList;
-    //private Activity activity;
+    private Activity activity;
 
-    public ZonasAdapter(List<Zona> zonaList, Context contexto) {
-        this.contexto = contexto;
+    public ZonasAdapter(List<Zona> zonaList, Activity activity) {
+        //this.contexto = contexto;
         this.zonaList = zonaList;
-        //this.activity=activity;
+        this.activity=activity;
     }
 
     @Override
     public void onItemClick(View view, int position) {
 
 
-        Intent intent = new Intent(contexto, ActivityProducto.class);
+        Intent intent = new Intent(activity, ActivityProducto.class);
         intent.putExtra("id", zonaList.get(position).getId());
-        //if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
-            //Explode explode=new Explode();
-            //explode.setDuration(1200);
-            //Slide slide=new Slide(Gravity.LEFT);
-            //slide.setDuration(500);
-            //slide.setInterpolator(new DecelerateInterpolator());
-            //activity.getWindow().setExitTransition(slide);
-            //activity.startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(activity).toBundle());
-        //}else{
-        contexto.startActivity(intent);
-        //}
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.LOLLIPOP){
+          ActivityOptionsCompat optionsCompat=ActivityOptionsCompat.makeSceneTransitionAnimation( activity,null);
+                activity.startActivity(intent,optionsCompat.toBundle());
+
+        }else{
+        activity.startActivity(intent);
+        }
         //contexto.startActivity(intent);
         //view.getContext().startActivity(intent);
     }
@@ -124,16 +123,16 @@ public class ZonasAdapter extends RecyclerView.Adapter<ZonasAdapter.ViewHolder> 
 
         try {
             holder.txtZona.setText(zonaList.get(position).getNombre());
-            IProducto iProducto=new SqliteProducto(contexto);
+            IProducto iProducto=new SqliteProducto(activity);
             int totalProductos=iProducto.totalProductosZona(zonaList.get(position));
             holder.txtCantidad.setText(String.valueOf(totalProductos));
-            IConteo iConteo=new SqliteConteo(contexto);
+            IConteo iConteo=new SqliteConteo(activity);
             int totalConteoZona=iConteo.obtenerTotalConteoZona(zonaList.get(position));
             holder.txtConteo.setText(Utils.formatearNumero(totalConteoZona));
 
         } catch (Exception e) {
             Log.e("Error", e.getMessage().toString());
-            Toast.makeText(contexto, "Error al cargar los datos al adaptador", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Error al cargar los datos al adaptador", Toast.LENGTH_SHORT).show();
         }
 
 

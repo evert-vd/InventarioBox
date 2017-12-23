@@ -7,9 +7,4 @@
     android:title="@string/action_inventario"
     app:showAsAction="never" />
 
-    <item
-        android:id="@+id/action_calculadora"
-        android:orderInCategory="100"
-        android:title="Calculadora"
-        app:showAsAction="never" />
 </menu>

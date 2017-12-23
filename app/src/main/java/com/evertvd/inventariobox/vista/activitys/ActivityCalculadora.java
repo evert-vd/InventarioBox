@@ -98,8 +98,8 @@ public class ActivityCalculadora extends AppCompatActivity {
         tvResult = (TextView) findViewById(R.id.tv_result);
 
         if (conteo != null) {
-            tvProcessor.setText(Utils.formatearNumero(conteo.getCantidad()));
-            tvResult.setText(Utils.formatearNumero(conteo.getCantidad()));
+            tvProcessor.setText(String.valueOf(cantidad+".0"));
+            tvResult.setText(String.valueOf(conteo.getCantidad()+".0"));
         } else {
             tvProcessor.setText("");
             tvResult.setText(Utils.formatearNumero(cantidad));
@@ -371,6 +371,7 @@ public class ActivityCalculadora extends AppCompatActivity {
                 String result = "";
 
                 try {
+
                     Scriptable scope = rhino.initStandardObjects();
                     result = rhino.evaluateString(scope, processor, "JavaScript", 1, null).toString();
                     tvProcessor.setText(result);
@@ -378,11 +379,14 @@ public class ActivityCalculadora extends AppCompatActivity {
                     //tvResult.setVisibility(View.GONE);
                     crearHistorial(cadena);
                     Log.e("RES", cadena);
+                    if(!result.contains("Error") || !result.contains("JavaScript")|| processor.contains("mozila")){
+                        habilitarBotonGuardar();
+                    }
 
-                    habilitarBotonGuardar();
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.e("ERROR", e.toString());
+                    deshabilitarBotonGuardar();
                     result = "Error. Verificar datos ingresados";
                 }
                 tvResult.setText(result);
@@ -392,18 +396,25 @@ public class ActivityCalculadora extends AppCompatActivity {
         btnSaveDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String cantidad = tvResult.getText().toString();
                 Intent intent = getIntent();
-                //intent.putExtra("cantidad", cantidad);
-                intent.putExtra("posicion", posicion);
-                if (posicion != -1) {
-                    actualizarConteo(cantidad);
-                } else {
-                    guardarConteo(cantidad);
+                try{
+                    String cantidad = tvResult.getText().toString();
+                    //intent.putExtra("cantidad", cantidad);
+                    intent.putExtra("posicion", posicion);
+                    if (posicion != -1) {
+                        actualizarConteo(cantidad);
+                    } else {
+                        guardarConteo(cantidad);
+                    }
+                    setResult(RESULT_OK, intent);
+                    //guardarHistorial();
+                    finish();
+                }catch (Exception e){
+                    intent.putExtra("posicion", -1);
+                    setResult(RESULT_CANCELED, intent);
+                    finish();
                 }
-                setResult(RESULT_OK, intent);
-                //guardarHistorial();
-                finish();
+
             }
         });
 
@@ -484,7 +495,18 @@ public class ActivityCalculadora extends AppCompatActivity {
 
 
     public void crearHistorial(String cadena) {
-        arrayList2.add(cadena);
+        if(arrayList2.size()>=1){
+            //valida que no se guarde la misma cantidad en el historial
+            String item0=arrayList2.get(arrayList2.size()-1);
+            if(!item0.contains(cadena)){
+                arrayList2.add(cadena);
+            }
+
+        }else{
+            arrayList2.add(cadena);
+        }
+
+
     }
 
     public void guardarHistorial() {

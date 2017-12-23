@@ -1,13 +1,19 @@
 package com.evertvd.inventariobox.vista.activitys;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.transition.Explode;
+import android.transition.Fade;
+import android.transition.Slide;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,6 +50,16 @@ public class ActivityProducto extends AppCompatActivity implements SearchView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+            Explode explode=new Explode();
+            explode.setDuration(1000);
+            Fade fade=new Fade();
+            fade.setDuration(1000);
+            getWindow().setEnterTransition(explode);
+            getWindow().setReturnTransition(fade);
+        }
+
         super.onCreate(savedInstanceState);
         //animaciones
         /*Slide slideLeft=new Slide(Gravity.LEFT);
@@ -107,7 +123,10 @@ public class ActivityProducto extends AppCompatActivity implements SearchView.On
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getApplicationContext(), ActivityConteo.class);
                 intent.putExtra("id", productoList.get(position).getId());
-                startActivity(intent);
+                    startActivity(intent);
+
+
+
             }
         });
     }

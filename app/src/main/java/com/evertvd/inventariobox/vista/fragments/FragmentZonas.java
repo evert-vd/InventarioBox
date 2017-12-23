@@ -123,7 +123,6 @@ public class FragmentZonas extends Fragment {
         recyclerViewZonas.setItemAnimator(new DefaultItemAnimator());
         recyclerViewZonas.setAdapter(adapter);
 
-
         return view;
     }
 
@@ -183,9 +182,6 @@ public class FragmentZonas extends Fragment {
             }
             return true;
             //prueba calc
-        }else if(id==R.id.action_calculadora){
-            Intent intent=new Intent(getActivity(), ActivityCalculadora.class);
-            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
