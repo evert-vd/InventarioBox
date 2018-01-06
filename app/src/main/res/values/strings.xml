@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">InventarioBox</string>
+    <string name="app_name">Inventario</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -23,6 +23,7 @@
     <string-array name="para">
         <item>claudioep@molicom.com.pe</item>
         <item>josedg@molicom.com.pe</item>
+        <item>alexajandrosm@molicom.com.pe</item>
         <!-- <item>martinmp@molicom.com.pe</item> -->
     </string-array>
     <string-array name="cc">
@@ -36,8 +37,5 @@
     <string name="mensaje_permiso">necesita permiso para acceder a la memoria de tu dispositivo.</string>
     <string name="rechazo_permiso">Haz rechazado la petición, por favor considere en aceptarla.</string>
     <string name="title_activity_calculadora">ActivityCalculadora</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
-
 
 </resources>

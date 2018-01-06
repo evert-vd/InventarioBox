@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.evertvd.greendaoinventario.vista.fragments.FrmResumenZona">
+    tools:context="com.evertvd.inventariobox.vista.fragments.FrmResumenZona">
 
     <include
         layout="@layout/header_resumen_zona"></include>

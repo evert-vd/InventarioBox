@@ -13,10 +13,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.evertvd.inventariobox.Interfaces.IConteo;
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Conteo;
-import com.evertvd.inventariobox.sqlite.SqliteConteo;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 

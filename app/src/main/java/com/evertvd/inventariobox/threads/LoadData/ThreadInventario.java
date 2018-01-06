@@ -2,16 +2,13 @@ package com.evertvd.inventariobox.threads.LoadData;
 
 import android.content.Context;
 import android.util.Log;
-import android.app.Activity;
 
-import com.evertvd.inventariobox.Interfaces.IEmpresa;
-import com.evertvd.inventariobox.Interfaces.IInventario;
-import com.evertvd.inventariobox.Interfaces.IZona;
+import com.evertvd.inventariobox.interfaces.IEmpresa;
+import com.evertvd.inventariobox.interfaces.IInventario;
 import com.evertvd.inventariobox.modelo.Empresa;
 import com.evertvd.inventariobox.modelo.Inventario;
 import com.evertvd.inventariobox.sqlite.SqliteEmpresa;
 import com.evertvd.inventariobox.sqlite.SqliteInventario;
-import com.evertvd.inventariobox.sqlite.SqliteZona;
 import com.evertvd.inventariobox.utils.Utils;
 
 import java.util.concurrent.TimeUnit;

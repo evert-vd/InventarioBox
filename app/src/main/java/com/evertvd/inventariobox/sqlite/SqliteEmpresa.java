@@ -2,14 +2,11 @@ package com.evertvd.inventariobox.sqlite;
 
 import android.content.Context;
 
-import com.evertvd.inventariobox.Interfaces.IEmpresa;
+import com.evertvd.inventariobox.interfaces.IEmpresa;
 import com.evertvd.inventariobox.controller.App;
-import com.evertvd.inventariobox.modelo.Conteo;
-import com.evertvd.inventariobox.modelo.Conteo_;
 import com.evertvd.inventariobox.modelo.Empresa;
 import com.evertvd.inventariobox.modelo.Empresa_;
 
-import android.app.Activity;
 import java.util.List;
 
 import io.objectbox.Box;

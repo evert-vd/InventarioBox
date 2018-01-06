@@ -3,22 +3,17 @@ package com.evertvd.inventariobox.vista.activitys;
 
 
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.Spanned;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.evertvd.inventariobox.Interfaces.IConteo;
-import com.evertvd.inventariobox.Interfaces.IHistorial;
-import com.evertvd.inventariobox.Interfaces.IProducto;
+import com.evertvd.inventariobox.interfaces.IConteo;
+import com.evertvd.inventariobox.interfaces.IHistorial;
+import com.evertvd.inventariobox.interfaces.IProducto;
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Conteo;
 import com.evertvd.inventariobox.modelo.Historial;
@@ -33,8 +28,6 @@ import org.mozilla.javascript.Scriptable;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-
-import static net.lingala.zip4j.progress.ProgressMonitor.RESULT_CANCELLED;
 
 public class ActivityCalculadora extends AppCompatActivity {
     /***** Declaring Variable *****/
@@ -60,7 +53,7 @@ public class ActivityCalculadora extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculadora);
         //arrayList=new ArrayList<>();
-
+        setTitle("Registrar Conteo");
         int cantidad = getIntent().getExtras().getInt("cantidad");
         posicion = getIntent().getExtras().getInt("posicion");
         idProducto = getIntent().getExtras().getLong("idProducto");

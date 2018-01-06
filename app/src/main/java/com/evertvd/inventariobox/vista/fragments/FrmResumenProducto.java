@@ -9,9 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
-import com.evertvd.inventariobox.Interfaces.IProducto;
+import com.evertvd.inventariobox.interfaces.IProducto;
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Producto;
 import com.evertvd.inventariobox.sqlite.SqliteProducto;
@@ -25,6 +26,7 @@ import java.util.List;
 public class FrmResumenProducto extends Fragment {
     ResumenProductoAdapter adapter;
     List<Producto> productoList;
+    private TextView txtSinDiferencias;
     private RecyclerView recycler;
     private RecyclerView.LayoutManager lManager;
     View view;
@@ -38,7 +40,7 @@ public class FrmResumenProducto extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_resumen_producto, container, false);
-
+        txtSinDiferencias=(TextView)view.findViewById(R.id.txtResumenSinDiferencias);
 
         /*SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         SharedPreferences.Editor myEditor = myPreferences.edit();
@@ -47,7 +49,11 @@ public class FrmResumenProducto extends Fragment {
 
         IProducto iProducto=new SqliteProducto(getActivity());
         productoList=iProducto.listarTotalProductoDiferencia();
-
+        if (productoList.isEmpty()){
+            txtSinDiferencias.setVisibility(View.VISIBLE);
+        }else{
+            txtSinDiferencias.setVisibility(View.GONE);
+        }
 
         recycler = (RecyclerView)view.findViewById(R.id.recyclerviewDiferenciaProducto);
         recycler.setHasFixedSize(true);

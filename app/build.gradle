@@ -18,6 +18,10 @@ android {
         }
     }
 
+    defaultConfig {
+        multiDexEnabled true
+    }
+
 }
 
 
@@ -39,8 +43,9 @@ dependencies {
 
     //otras librerías
     compile 'com.itextpdf:itextpdf:5.5.12'
-    compile 'org.mod4j.org.apache.commons:lang:2.1.0'
+    //compile 'org.mod4j.org.apache.commons:lang:2.1.0'
     compile 'com.faendir.rhino:rhino-android:1.4'
+    compile 'de.hdodenhof:circleimageview:2.2.0'
 
 
 

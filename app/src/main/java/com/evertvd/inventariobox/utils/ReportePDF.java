@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 
-import com.evertvd.inventariobox.Interfaces.IInventario;
+import com.evertvd.inventariobox.interfaces.IInventario;
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Inventario;
 import com.evertvd.inventariobox.sqlite.SqliteInventario;
@@ -153,7 +153,7 @@ public class ReportePDF {
                 text.addElement(p);
                 text.addElement(new Phrase("Inventario:"+inventario.getNumInventario(), helvetica8));
                 if(inventario.getNumEquipo()<10){
-                    text.addElement(new Phrase("Equipo:"+"0"+inventario.getNumInventario(), helvetica8));
+                    text.addElement(new Phrase("Equipo:"+"0"+inventario.getNumEquipo(), helvetica8));
                 }else{
                     text.addElement(new Phrase("Equipo:"+inventario.getNumEquipo(), helvetica8));
                 }

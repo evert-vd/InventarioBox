@@ -2,11 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.evertvd.inventarioBox.vista.fragments.FrmResumenProducto">
+    tools:context="com.evertvd.inventariobox.vista.fragments.FrmResumenProducto">
 
 
     <include
         layout="@layout/header_resumen_producto"></include>
+
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerviewDiferenciaProducto"
@@ -15,5 +17,12 @@
         android:layout_marginTop="40dp">
     </android.support.v7.widget.RecyclerView>
 
+    <TextView
+        android:id="@+id/txtResumenSinDiferencias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center"
+        android:text="No existe diferencias por Producto"/>
 
 </FrameLayout>

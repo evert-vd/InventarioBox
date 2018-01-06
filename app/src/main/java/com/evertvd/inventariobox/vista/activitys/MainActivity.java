@@ -4,17 +4,11 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
-import android.transition.Explode;
-import android.transition.Fade;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -28,17 +22,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.evertvd.inventariobox.Interfaces.IConteo;
-import com.evertvd.inventariobox.Interfaces.IEmpresa;
-import com.evertvd.inventariobox.Interfaces.IHistorial;
-import com.evertvd.inventariobox.Interfaces.IInventario;
-import com.evertvd.inventariobox.Interfaces.IProducto;
-import com.evertvd.inventariobox.Interfaces.IZona;
+import com.evertvd.inventariobox.interfaces.IConteo;
+import com.evertvd.inventariobox.interfaces.IEmpresa;
+import com.evertvd.inventariobox.interfaces.IHistorial;
+import com.evertvd.inventariobox.interfaces.IInventario;
+import com.evertvd.inventariobox.interfaces.IProducto;
+import com.evertvd.inventariobox.interfaces.IZona;
 import com.evertvd.inventariobox.R;
-import com.evertvd.inventariobox.controller.App;
 import com.evertvd.inventariobox.modelo.Empresa;
 import com.evertvd.inventariobox.modelo.Inventario;
-import com.evertvd.inventariobox.modelo.Zona;
 import com.evertvd.inventariobox.sqlite.SqliteConteo;
 import com.evertvd.inventariobox.sqlite.SqliteEmpresa;
 import com.evertvd.inventariobox.sqlite.SqliteHistorial;
@@ -54,10 +46,6 @@ import com.evertvd.inventariobox.vista.fragments.FrmNuevoProducto;
 import java.io.File;
 import java.util.List;
 
-import io.objectbox.Box;
-import io.objectbox.BoxStore;
-import io.objectbox.query.Query;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -71,14 +59,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+        /*if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
             Explode explode=new Explode();
-            explode.setDuration(1000);
+            explode.setDuration(600);
             Fade fade=new Fade();
-            fade.setDuration(1000);
+            fade.setDuration(600);
             getWindow().setExitTransition(explode);
             getWindow().setReenterTransition(fade);
-        }
+        }*/
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -286,7 +274,7 @@ public class MainActivity extends AppCompatActivity
        Button cancel = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
        if(cancel != null)
            //b.setBackgroundColor(Color.CYAN);
-           cancel.setTextColor(getResources().getColor(R.color.colorGreyDarken_2));//color por código al boton cancelar del fialogo
+           cancel.setTextColor(getResources().getColor(R.color.grey_darken_2));//color por código al boton cancelar del fialogo
    }
 
 

@@ -16,9 +16,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 
-import com.evertvd.inventariobox.Interfaces.IInventario;
-import com.evertvd.inventariobox.Interfaces.IProducto;
-import com.evertvd.inventariobox.Interfaces.IZona;
+import com.evertvd.inventariobox.interfaces.IInventario;
+import com.evertvd.inventariobox.interfaces.IProducto;
+import com.evertvd.inventariobox.interfaces.IZona;
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Inventario;
 import com.evertvd.inventariobox.modelo.Producto;

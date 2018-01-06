@@ -13,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.evertvd.inventariobox.Interfaces.IConteo;
-import com.evertvd.inventariobox.Interfaces.ItemClickListener;
+import com.evertvd.inventariobox.interfaces.IConteo;
+import com.evertvd.inventariobox.interfaces.ItemClickListener;
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Zona;
 import com.evertvd.inventariobox.sqlite.SqliteConteo;

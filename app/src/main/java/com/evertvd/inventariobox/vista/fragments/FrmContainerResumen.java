@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.evertvd.inventariobox.Interfaces.IInventario;
+import com.evertvd.inventariobox.interfaces.IInventario;
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Inventario;
 import com.evertvd.inventariobox.sqlite.SqliteInventario;

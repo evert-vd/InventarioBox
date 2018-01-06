@@ -1,24 +1,19 @@
 package com.evertvd.inventariobox.vista.adapters;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.evertvd.inventariobox.Interfaces.IConteo;
-import com.evertvd.inventariobox.Interfaces.IProducto;
-import com.evertvd.inventariobox.Interfaces.ItemClickListener;
+import com.evertvd.inventariobox.interfaces.IConteo;
+import com.evertvd.inventariobox.interfaces.IProducto;
+import com.evertvd.inventariobox.interfaces.ItemClickListener;
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Zona;
 import com.evertvd.inventariobox.sqlite.SqliteConteo;
@@ -49,16 +44,15 @@ public class ZonasAdapter extends RecyclerView.Adapter<ZonasAdapter.ViewHolder> 
     @Override
     public void onItemClick(View view, int position) {
 
-
         Intent intent = new Intent(activity, ActivityProducto.class);
         intent.putExtra("id", zonaList.get(position).getId());
-        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.LOLLIPOP){
+        /*if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.LOLLIPOP){
           ActivityOptionsCompat optionsCompat=ActivityOptionsCompat.makeSceneTransitionAnimation( activity,null);
                 activity.startActivity(intent,optionsCompat.toBundle());
 
-        }else{
+        }else{*/
         activity.startActivity(intent);
-        }
+        //}
         //contexto.startActivity(intent);
         //view.getContext().startActivity(intent);
     }

@@ -1,10 +1,7 @@
-package com.evertvd.inventariobox.Interfaces;
+package com.evertvd.inventariobox.interfaces;
 
 
-import com.evertvd.inventariobox.modelo.Empresa;
 import com.evertvd.inventariobox.modelo.Inventario;
-
-import java.util.List;
 
 /**
  * Created by evertvd on 06/12/2017.

@@ -2,9 +2,9 @@ package com.evertvd.inventariobox.utils;
 
 import android.content.Context;
 
-import com.evertvd.inventariobox.Interfaces.IConteo;
-import com.evertvd.inventariobox.Interfaces.IProducto;
-import com.evertvd.inventariobox.Interfaces.IZona;
+import com.evertvd.inventariobox.interfaces.IConteo;
+import com.evertvd.inventariobox.interfaces.IProducto;
+import com.evertvd.inventariobox.interfaces.IZona;
 import com.evertvd.inventariobox.modelo.Conteo;
 import com.evertvd.inventariobox.modelo.Producto;
 import com.evertvd.inventariobox.modelo.Zona;
@@ -101,7 +101,12 @@ public class ContentPDF {
             table.getDefaultCell().setMinimumHeight(20);//alto minimo de la celda
             table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
             //table.addCell(String.valueOf(productoList.get(p).getCodigo()),font);
-            table.addCell(new Paragraph(" "+ String.valueOf(productoList.get(p).getCodigo()),helvetica9));
+            if(productoList.get(p).getTipo().equalsIgnoreCase("App")){
+                table.addCell(new Paragraph(" "+ String.valueOf("NN"+productoList.get(p).getCodigo()),helvetica9));
+            }else{
+                table.addCell(new Paragraph(" "+ String.valueOf(productoList.get(p).getCodigo()),helvetica9));
+            }
+
             //table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
             table.addCell(new Paragraph(productoList.get(p).getDescripcion(),helvetica9));
             table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -134,11 +139,11 @@ public class ContentPDF {
         table.addCell("");
         table.addCell("______________________");
 
-        table.addCell(new Paragraph("Responsable de Inventario", subTitleFont));
+        table.addCell(new Paragraph("Personal Administrativo", subTitleFont));
         table.addCell("");
-        table.addCell(new Paragraph("Almacenero", subTitleFont));
+        table.addCell(new Paragraph("Personal Administrativo", subTitleFont));
         table.addCell("");
-        table.addCell(new Paragraph("Administrador de Almacén", subTitleFont));
+        table.addCell(new Paragraph("Responsable de Almacén", subTitleFont));
         table.addCell("");
         document.add(table);
     }
@@ -188,7 +193,7 @@ public class ContentPDF {
                 if(c==(conteoList.size()-1)){
                     detalleConteo2+=Utils.formatearNumero(conteoList.get(c).getCantidad());
                 }else{
-                    detalleConteo1+=Utils.formatearNumero(conteoList.get(c).getCantidad())+"/";
+                    detalleConteo1+=Utils.formatearNumero(conteoList.get(c).getCantidad())+"+";
                 }
             }
         }

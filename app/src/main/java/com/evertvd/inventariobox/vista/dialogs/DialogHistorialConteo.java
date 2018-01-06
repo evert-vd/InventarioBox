@@ -8,26 +8,20 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 
 
-import com.evertvd.inventariobox.Interfaces.IConteo;
-import com.evertvd.inventariobox.Interfaces.IHistorial;
-import com.evertvd.inventariobox.Interfaces.IProducto;
+import com.evertvd.inventariobox.interfaces.IConteo;
+import com.evertvd.inventariobox.interfaces.IHistorial;
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Conteo;
 import com.evertvd.inventariobox.modelo.Historial;
-import com.evertvd.inventariobox.modelo.Producto;
 import com.evertvd.inventariobox.sqlite.SqliteConteo;
 import com.evertvd.inventariobox.sqlite.SqliteHistorial;
-import com.evertvd.inventariobox.sqlite.SqliteProducto;
 import com.evertvd.inventariobox.utils.Utils;
 import com.evertvd.inventariobox.vista.adapters.HistorialConteoAdapter;
-import com.evertvd.inventariobox.vista.adapters.ZonasAdapter;
 
 import java.util.List;
 

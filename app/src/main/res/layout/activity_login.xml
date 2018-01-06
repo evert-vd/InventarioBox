@@ -4,150 +4,163 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    android:background="@color/white"
     tools:context="com.evertvd.inventariobox.vista.activitys.Login">
 
-            <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/grupomolicom" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GRUPO MOLICOM"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="0.45"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_empresa"
+                android:tint="@color/grey_darken_3" />
+
+            <Spinner
+                android:id="@+id/spinnerEmpresa"
+                style="@android:style/Widget.Holo.Light.Spinner"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.3"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:spinnerMode="dialog" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:src="@drawable/grupomolicom"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/colorPrimary"
-                    android:text="GRUPO MOLICOM" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.5"
-                android:padding="20dp"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:tint="@color/colorPrimary"
-                        android:src="@drawable/ic_empresa"/>
-
-
-                    <Spinner
-                        android:layout_marginLeft="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spinnerEmpresa"
-                        style="@android:style/Widget.Holo.Light.Spinner"
-                        android:spinnerMode="dialog"/>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:tint="@color/colorPrimary"
-                        android:src="@drawable/ic_group"/>
-
-
-                    <EditText
-                        android:id="@+id/txtNumEquipo"
-                        android:layout_marginLeft="10dp"
-                        android:inputType="number"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColorHint="@color/colorGreyDarken_2"
-                        android:hint="Número de equipo"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:tint="@color/colorPrimary"
-                        android:src="@drawable/ic_import_file"/>
-
-                    <EditText
-                        android:id="@+id/txtNombreArchivo"
-                        android:layout_marginLeft="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColorHint="@color/colorGreyDarken_2"
-                        android:hint="Buscar archivo"
-                        android:focusable="false"
-                        android:textSize="18sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.2"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/btnIniciarSesion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                    android:textColor="@color/colorPrimary"
-                    android:text="Iniciar Inventario" />
-
-                <TextView
-                    android:id="@+id/txtManualUsuario"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center_vertical"
-                    android:layout_gravity="right"
-                    android:layout_marginBottom="2dp"
-                    android:textStyle="italic"
-                    android:textSize="15sp"
-                    android:text="Manual de Usuario"
-                    android:drawableLeft="@drawable/ic_menu_manual"
-                    android:drawableTint="@color/colorGreyDarken_2"
-                    android:drawablePadding="5dp"/>
-
-            </LinearLayout>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_group"
+                android:tint="@color/grey_darken_3" />
+
+
+            <EditText
+                android:id="@+id/txtNumEquipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:hint="Número de equipo"
+                android:inputType="number"
+                android:textColorHint="@color/grey_darken_1"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_import_file"
+                android:tint="@color/grey_darken_3" />
+
+            <EditText
+                android:id="@+id/txtNombreArchivo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:focusable="false"
+                android:hint="Buscar archivo"
+                android:textColorHint="@color/grey_darken_1"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="6dp"
+        android:layout_weight="0.25"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:orientation="vertical">
+        <Button
+            android:id="@+id/btnIniciarSesion"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="300dp"
+            android:layout_height="52dp"
+            android:text="Iniciar Inventario"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/border_button"
+            android:textColor="@color/grey_darken_3"
+            android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtManualUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:layout_weight="0.4"
+            android:layout_gravity="right"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="2dp"
+            android:drawableLeft="@drawable/ic_menu_manual"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/grey_darken_1"
+            android:text="Manual de Usuario"
+            android:textSize="15sp"
+            android:textStyle="italic" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
 

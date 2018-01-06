@@ -12,21 +12,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".vista.activitys.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".vista.activitys.Login" />
-        <activity android:name=".vista.activitys.FileInterno" />
-        <activity android:name=".vista.activitys.ActivityProducto" />
-        <activity android:name=".vista.activitys.ActivityConteo" />
-        <activity android:name=".vista.activitys.ActivityCalculadora"></activity>
+
+        <activity
+            android:name=".vista.activitys.Login"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:name=".vista.activitys.FileInterno"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".vista.activitys.ActivityProducto"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:name=".vista.activitys.ActivityConteo"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:name=".vista.activitys.ActivityCalculadora"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"></activity>
     </application>
 
 </manifest>

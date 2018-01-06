@@ -1,7 +1,6 @@
 package com.evertvd.inventariobox.vista.fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -20,9 +19,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.app.ProgressDialog;
 
-import com.evertvd.inventariobox.Interfaces.IConteo;
-import com.evertvd.inventariobox.Interfaces.IInventario;
-import com.evertvd.inventariobox.Interfaces.IZona;
+import com.evertvd.inventariobox.interfaces.IConteo;
+import com.evertvd.inventariobox.interfaces.IInventario;
+import com.evertvd.inventariobox.interfaces.IZona;
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Conteo;
 import com.evertvd.inventariobox.modelo.Inventario;
@@ -31,7 +30,6 @@ import com.evertvd.inventariobox.sqlite.SqliteConteo;
 import com.evertvd.inventariobox.sqlite.SqliteInventario;
 import com.evertvd.inventariobox.sqlite.SqliteZona;
 import com.evertvd.inventariobox.threads.ThreadActualizarDiferencias;
-import com.evertvd.inventariobox.vista.activitys.ActivityCalculadora;
 import com.evertvd.inventariobox.vista.adapters.ZonasAdapter;
 import com.evertvd.inventariobox.vista.dialogs.DialogValidarConteo;
 import com.evertvd.inventariobox.vista.dialogs.DialogoCierreInventario;
@@ -192,7 +190,6 @@ public class FragmentZonas extends Fragment {
     public void onResume() {
         super.onResume();
         IZona iZona=new SqliteZona(getActivity());
-
         if(inventario.getContexto()==0){
             zonaList=iZona.listarZona();
         }else if(inventario.getContexto()==1){

@@ -1,29 +1,20 @@
 package com.evertvd.inventariobox.vista.activitys;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.transition.Explode;
-import android.transition.Fade;
-import android.transition.Slide;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 
-import com.evertvd.inventariobox.Interfaces.IInventario;
-import com.evertvd.inventariobox.Interfaces.IProducto;
-import com.evertvd.inventariobox.Interfaces.IZona;
+import com.evertvd.inventariobox.interfaces.IInventario;
+import com.evertvd.inventariobox.interfaces.IProducto;
+import com.evertvd.inventariobox.interfaces.IZona;
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Inventario;
 import com.evertvd.inventariobox.modelo.Producto;
@@ -32,7 +23,6 @@ import com.evertvd.inventariobox.sqlite.SqliteInventario;
 import com.evertvd.inventariobox.sqlite.SqliteProducto;
 import com.evertvd.inventariobox.sqlite.SqliteZona;
 import com.evertvd.inventariobox.vista.adapters.ProductoAdapter;
-import com.evertvd.inventariobox.vista.adapters.ZonasAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,14 +41,14 @@ public class ActivityProducto extends AppCompatActivity implements SearchView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
-            Explode explode=new Explode();
-            explode.setDuration(1000);
+        /*if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+            Slide slide=new Slide();
+            slide.setDuration(600);
             Fade fade=new Fade();
-            fade.setDuration(1000);
-            getWindow().setEnterTransition(explode);
+            fade.setDuration(600);
+            getWindow().setEnterTransition(slide);
             getWindow().setReturnTransition(fade);
-        }
+        }*/
 
         super.onCreate(savedInstanceState);
         //animaciones
@@ -85,20 +75,24 @@ public class ActivityProducto extends AppCompatActivity implements SearchView.On
         IZona iZona=new SqliteZona(this);
         zona=iZona.buscarZonaId(idZona);
 
-        Log.e("Zona", zona.getNombre());
+        Log.e("INV", String.valueOf(inventario.getContexto()));
 
         IProducto iProducto=new SqliteProducto(this);
-        //if(inventario.getContexto()!=2){
+        if(inventario.getContexto()==0){
             productoList=iProducto.listarProductoZona(zona);
-            Log.e("SIZEP", String.valueOf(productoList.size()));
-            List<Producto>productoListAll=iProducto.listarProducto();
-            for (int i=0;i<productoListAll.size();i++){
+            //Log.e("SIZEP", String.valueOf(productoList.size()));
+            //List<Producto>productoListAll=iProducto.listarProducto();
+            /*for (int i=0;i<productoListAll.size();i++){
                 Log.e("PROD ALL", String.valueOf(productoListAll.get(i).getDescripcion()));
-            }
-
-        //}else{
-           //productoList=iProducto.listarProductoZonaResumen(idZona);
-        //}
+            }*/
+        }else if(inventario.getContexto()==1){
+           productoList=iProducto.listarProductoDiferenciaZona(idZona);
+           /*for (int i=0;i<productoList.size();i++){
+                Log.e("PROD ALL", String.valueOf(productoList.get(i).getDescripcion()));
+            }*/
+        }else{
+            productoList=iProducto.listarProductoZonaResumen(idZona);
+        }
         setTitle("Prod. en la zona " + zona.getNombre());
 
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true); flecha regresar
@@ -114,23 +108,11 @@ public class ActivityProducto extends AppCompatActivity implements SearchView.On
         recycler.setAdapter(adapter);
         recycler.setItemAnimator(new DefaultItemAnimator());
 
-        if (savedInstanceState != null) {
+        /*if (savedInstanceState != null) {
             Log.e("saved instance", savedInstanceState.toString());
-        }
+        }*/
 
-        ((ProductoAdapter) adapter).setOnItemClickListener(new ProductoAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Intent intent = new Intent(getApplicationContext(), ActivityConteo.class);
-                intent.putExtra("id", productoList.get(position).getId());
-                    startActivity(intent);
-
-
-
-            }
-        });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -191,7 +173,6 @@ public class ActivityProducto extends AppCompatActivity implements SearchView.On
                     listaFiltrada.add(producto);
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -202,8 +183,10 @@ public class ActivityProducto extends AppCompatActivity implements SearchView.On
     protected void onResume() {
         super.onResume();
         IProducto iProducto=new SqliteProducto(this);
-        if(inventario.getContexto()!=2){
+        if(inventario.getContexto()==0){
             productoList=iProducto.listarProductoZona(zona);
+        }else if(inventario.getContexto()==1){
+            productoList=iProducto.listarProductoDiferenciaZona(idZona);
         }else{
             productoList=iProducto.listarProductoZonaResumen(idZona);
         }
@@ -211,7 +194,6 @@ public class ActivityProducto extends AppCompatActivity implements SearchView.On
         recycler.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
-
 
     @Override
     public void onBackPressed() {

@@ -5,14 +5,17 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.csvreader.CsvWriter;
-import com.evertvd.inventariobox.Interfaces.IConteo;
-import com.evertvd.inventariobox.Interfaces.IInventario;
-import com.evertvd.inventariobox.Interfaces.IProducto;
+import com.evertvd.inventariobox.interfaces.IConteo;
+import com.evertvd.inventariobox.interfaces.IHistorial;
+import com.evertvd.inventariobox.interfaces.IInventario;
+import com.evertvd.inventariobox.interfaces.IProducto;
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Conteo;
+import com.evertvd.inventariobox.modelo.Historial;
 import com.evertvd.inventariobox.modelo.Inventario;
 import com.evertvd.inventariobox.modelo.Producto;
 import com.evertvd.inventariobox.sqlite.SqliteConteo;
+import com.evertvd.inventariobox.sqlite.SqliteHistorial;
 import com.evertvd.inventariobox.sqlite.SqliteInventario;
 import com.evertvd.inventariobox.sqlite.SqliteProducto;
 
@@ -80,14 +83,18 @@ public class ReporteCSV {
                 IInventario iInventario = new SqliteInventario(context);
                 Inventario inventario = iInventario.obtenerInventario();
 
+                IHistorial iHistorial = new SqliteHistorial(context);
+
                 IConteo iConteo = new SqliteConteo(context);
                 List<Conteo> conteoList = iConteo.listarAllConteo();
                 Log.e("SIZE", String.valueOf(conteoList.size()));
                 String nombreReporte;
                 if (numReporte == 0) {
+                    //reemplazar reporte
                     nombreReporte = nombreArchivo(context, 0, "detallado");
                     MainDirectorios.eliminarFichero(context, nombreReporte);
                 } else {
+                    //nuevo reporte
                     nombreReporte = nombreArchivo(context, 1, "detallado");
                     MainDirectorios.eliminarFichero(context, nombreReporte);
                 }
@@ -113,7 +120,7 @@ public class ReporteCSV {
                 csvOutput.write("CODIGO");
                 csvOutput.write("DESCRIPCION");
                 csvOutput.write("CANTIDAD");
-                csvOutput.write("OBSERVACION");
+                //csvOutput.write("OBSERVACION");
                 csvOutput.write("HISTORIAL");
                 csvOutput.write("ESTADO");
                 csvOutput.endRecord();
@@ -123,37 +130,26 @@ public class ReporteCSV {
                     csvOutput.write(String.valueOf(conteoList.get(i).getProducto().getTarget().getCodigo()));
                     csvOutput.write(conteoList.get(i).getProducto().getTarget().getDescripcion());
                     csvOutput.write(String.valueOf(conteoList.get(i).getCantidad()));
-                    csvOutput.write(String.valueOf(conteoList.get(i).getObservacion()));
+                    //csvOutput.write(String.valueOf(conteoList.get(i).getObservacion()));
 
-                    //IHistorial iHistorial = new SqliteHistorial();
-                    //String historial = "";
-                    //List<Historial> historialList = iHistorial.listarHisotorial(conteoList.get(i).getId());
-                    /*if (!historialList.isEmpty()) {
-                        String tipo = "";
-                        for (int j = 0; j < historialList.size(); j++) {
-                            if (historialList.get(j).getTipo() == 1) {
-                                tipo = "inicial:" + String.valueOf(historialList.get(j).getCantidad() + "/");
-                            } else if (historialList.get(j).getTipo() == 2) {
-                                tipo = "modificación:" + String.valueOf(historialList.get(j).getCantidad() + "/");
-                            } else if (historialList.get(j).getTipo() == -1) {
-                                tipo = "eliminación:" + String.valueOf(historialList.get(j).getCantidad());
-                            }
-                            historial += tipo;
-                        }
+                    List<Historial> historialList = iHistorial.listarHisotorial(conteoList.get(i));
+                    String historial = "";
+                    for (int h = 0; h < historialList.size(); h++) {
+                        historial += "[" + historialList.get(h).getObservacion() + "] ";
                     }
-                    if (conteoList.get(i).getEstado() == -1) {
-                        csvOutput.write(String.valueOf(historial));
-                    } else {
-                        csvOutput.write(String.valueOf(historial + "actual:" + conteoList.get(i).getCantidad()));
-                    }*/
+                    csvOutput.write(historial);
+
                     if (conteoList.get(i).getEstado() == -1) {
                         csvOutput.write("Eliminado");
                     } else {
-                        csvOutput.write("");
+                        if (conteoList.get(i).getProducto().getTarget().getTipo().equalsIgnoreCase("App")) {
+                            csvOutput.write("Reg. Aplicacion");
+                        } else {
+                            csvOutput.write("");
+                        }
                     }
                     csvOutput.endRecord();
                 }
-
                 csvOutput.close();
                 //Toast.makeText(context, "Reporte Detallado exportado correctamente", Toast.LENGTH_SHORT).show();
             } catch (IOException ex) {
@@ -165,7 +161,7 @@ public class ReporteCSV {
         }
     }
 
-   }
+}
 
 
 

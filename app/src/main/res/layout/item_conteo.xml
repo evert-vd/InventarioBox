@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="visible"
-            android:background="@color/colorRed">
+            android:background="@color/red">
 
             <ImageView
                 android:id="@+id/delete_icon"
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible"
-        android:background="@color/colorOrange">
+        android:background="@color/orange">
 
         <ImageView
             android:id="@+id/archive_icon"
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="visible"
-            android:background="@color/colorGreen">
+            android:background="@color/green">
 
             <ImageView
                 android:id="@+id/edit_icon"
@@ -148,24 +148,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|right"
+                    android:gravity="right"
                     android:layout_marginLeft="15dp"
                     android:orientation="horizontal">
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="0.4"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:text="Estado:"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
                     <TextView
                         android:id="@+id/txtEstado"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_marginLeft="3dp"
-                        android:layout_weight="0.6"
+                        android:layout_marginRight="2dp"
                         android:layout_gravity="right"
                         android:layout_height="wrap_content"
                         android:text="Por validar"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 

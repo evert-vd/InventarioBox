@@ -8,12 +8,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 
-import com.evertvd.inventariobox.Interfaces.IInventario;
+import com.evertvd.inventariobox.interfaces.IInventario;
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Inventario;
 import com.evertvd.inventariobox.sqlite.SqliteInventario;
@@ -80,8 +80,14 @@ public class DialogEnviarEmail extends DialogFragment {
         });
 
         //alert.show();
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
 
-        return builder.create();
+        Button cancel = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        if(cancel != null)
+            //b.setBackgroundColor(Color.CYAN);
+            cancel.setTextColor(getResources().getColor(R.color.grey_darken_2));
+        return alertDialog;
     }
 
 

@@ -4,22 +4,21 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.evertvd.inventariobox.Interfaces.IInventario;
+import com.evertvd.inventariobox.interfaces.IInventario;
 import com.evertvd.inventariobox.sqlite.SqliteInventario;
 
 /**
  * Created by evertvd on 24/11/2017.
  */
 
-public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
+public class RecyclerItemTouchHelperConteo extends ItemTouchHelper.SimpleCallback {
     private RecyclerItemTouchHelperListener listener;
 
 
-    public RecyclerItemTouchHelper(int dragDirs, int swipeDirs, RecyclerItemTouchHelperListener listener) {
+    public RecyclerItemTouchHelperConteo(int dragDirs, int swipeDirs, RecyclerItemTouchHelperListener listener) {
         super(dragDirs, swipeDirs);
         this.listener = listener;
         //this.relativeLayout=relativeLayout;
@@ -103,14 +102,14 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
         listener.onSwiped(viewHolder, direction, viewHolder.getAdapterPosition());
-        Log.e("direction2", String.valueOf(direction));
+        //Log.e("direction2", String.valueOf(direction));
     }
 
 
 
     @Override
     public int convertToAbsoluteDirection(int flags, int layoutDirection) {
-       Log.e("flags", String.valueOf(flags));
+       //Log.e("flags", String.valueOf(flags));
         return super.convertToAbsoluteDirection(flags, layoutDirection);
     }
 

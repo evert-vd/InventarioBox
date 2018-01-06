@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-import com.evertvd.inventariobox.Interfaces.IConteo;
-import com.evertvd.inventariobox.Interfaces.IZona;
+import com.evertvd.inventariobox.interfaces.IConteo;
+import com.evertvd.inventariobox.interfaces.IZona;
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Zona;
 import com.evertvd.inventariobox.sqlite.SqliteConteo;

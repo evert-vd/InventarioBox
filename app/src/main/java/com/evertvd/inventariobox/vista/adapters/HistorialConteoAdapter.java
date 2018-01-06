@@ -1,27 +1,17 @@
 package com.evertvd.inventariobox.vista.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.evertvd.inventariobox.Interfaces.IConteo;
-import com.evertvd.inventariobox.Interfaces.IProducto;
-import com.evertvd.inventariobox.Interfaces.ItemClickListener;
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Historial;
-import com.evertvd.inventariobox.modelo.Zona;
-import com.evertvd.inventariobox.sqlite.SqliteConteo;
-import com.evertvd.inventariobox.sqlite.SqliteProducto;
-import com.evertvd.inventariobox.utils.Utils;
-import com.evertvd.inventariobox.vista.activitys.ActivityProducto;
 
 import java.util.List;
 

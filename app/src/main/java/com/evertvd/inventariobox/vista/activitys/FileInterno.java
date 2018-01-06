@@ -194,7 +194,7 @@ public class FileInterno extends ListActivity {
             Button cancel = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
             if(cancel != null)
                 //b.setBackgroundColor(Color.CYAN);
-                cancel.setTextColor(getResources().getColor(R.color.colorGreyDarken_2));//color por código al boton cancelar del fialogo
+                cancel.setTextColor(getResources().getColor(R.color.grey_darken_2));//color por código al boton cancelar del fialogo
         }
     }
 

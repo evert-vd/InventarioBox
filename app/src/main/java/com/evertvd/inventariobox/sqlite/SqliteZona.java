@@ -1,15 +1,10 @@
 package com.evertvd.inventariobox.sqlite;
 
-import android.app.Activity;
 import android.content.Context;
 
-import com.evertvd.inventariobox.Interfaces.IProducto;
-import com.evertvd.inventariobox.Interfaces.IZona;
+import com.evertvd.inventariobox.interfaces.IProducto;
+import com.evertvd.inventariobox.interfaces.IZona;
 import com.evertvd.inventariobox.controller.App;
-import com.evertvd.inventariobox.modelo.Conteo;
-import com.evertvd.inventariobox.modelo.Conteo_;
-import com.evertvd.inventariobox.modelo.Empresa;
-import com.evertvd.inventariobox.modelo.Inventario;
 import com.evertvd.inventariobox.modelo.Producto;
 import com.evertvd.inventariobox.modelo.Zona;
 import com.evertvd.inventariobox.modelo.Zona_;
@@ -43,7 +38,12 @@ public class SqliteZona implements IZona {
 
     @Override
     public List<Zona> listarZona() {
-        List<Zona> zonaList = zonaBox.getAll();
+        //List<Zona> zonaList = zonaBox.getAll();
+
+        QueryBuilder<Zona> builder = zonaBox.query();
+        builder.order(Zona_.nombre);
+        List<Zona> zonaList = builder.build().find();
+
         return zonaList;
     }
 
@@ -87,6 +87,7 @@ public class SqliteZona implements IZona {
     public List<Zona> listarZonaDiferencia() {
         QueryBuilder<Zona> builder = zonaBox.query();
         builder.notEqual(Zona_.estado, 0);//excluye eliminados
+        builder.order(Zona_.nombre);
         List<Zona> zonaList = builder.build().find();
         return zonaList;
     }

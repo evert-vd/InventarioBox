@@ -38,6 +38,15 @@ public class Utils {
            return String.valueOf(formateador.format(numero));
        }
 
+
+    public static String quitarFormato(String numero){
+        //DecimalFormatSymbols simbolo=new DecimalFormatSymbols();
+        //simbolo.setDecimalSeparator('.');
+        //simbolo.setGroupingSeparator(',');
+        DecimalFormat formateador = new DecimalFormat("####");
+        return String.valueOf(formateador.format(numero));
+    }
+
     public static void copyRawToSDCard(int id, String path, Context context) {
         InputStream in = context.getResources().openRawResource(id);
         FileOutputStream out = null;

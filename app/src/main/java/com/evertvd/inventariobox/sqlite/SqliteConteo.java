@@ -2,12 +2,11 @@ package com.evertvd.inventariobox.sqlite;
 
 import android.content.Context;
 
-import com.evertvd.inventariobox.Interfaces.IConteo;
-import com.evertvd.inventariobox.Interfaces.IProducto;
+import com.evertvd.inventariobox.interfaces.IConteo;
+import com.evertvd.inventariobox.interfaces.IProducto;
 import com.evertvd.inventariobox.controller.App;
 import com.evertvd.inventariobox.modelo.Conteo;
 import com.evertvd.inventariobox.modelo.Conteo_;
-import com.evertvd.inventariobox.modelo.Historial;
 import com.evertvd.inventariobox.modelo.Producto;
 import com.evertvd.inventariobox.modelo.Zona;
 
@@ -32,8 +31,6 @@ public class SqliteConteo implements IConteo {
 
     public SqliteConteo(Context context){
             this.context=context;
-        //App app=new App();
-        // boxStore=app.getBoxStore();
         boxStore = ((App)context.getApplicationContext()).getBoxStore();
         //this.boxStore=boxStore;
         conteoBox = boxStore.boxFor(Conteo.class);
@@ -116,7 +113,8 @@ public class SqliteConteo implements IConteo {
     @Override
     public List<Conteo> listarConteoPorValidar() {
         QueryBuilder<Conteo> builder = conteoBox.query();
-        builder.equal(Conteo_.validado, 0);//excluye eliminados
+        builder.notEqual(Conteo_.validado, 1);//excluye validados
+        builder.notEqual(Conteo_.estado,-1);//excluye eliminados
         List<Conteo> conteoList = builder.build().find();
         return conteoList;
     }

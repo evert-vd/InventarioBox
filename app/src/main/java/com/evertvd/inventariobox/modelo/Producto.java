@@ -20,7 +20,7 @@ public class Producto {
     private String descripcion;
     private double stock;
     private String tipo;//origen del dato:sistema, app
-    private int estado;//-1:diferencia;abierto, 0:sin diferencia:cerrado
+    private int estado;//1:diferencia:abierto, 0:sin diferencia:cerrado
     public ToOne<Zona> zona;
     @Backlink
     public ToMany<Conteo> conteo;

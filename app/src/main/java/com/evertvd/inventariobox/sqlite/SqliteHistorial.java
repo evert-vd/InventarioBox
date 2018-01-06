@@ -1,12 +1,10 @@
 package com.evertvd.inventariobox.sqlite;
 
 import android.content.Context;
-import android.util.Log;
 
-import com.evertvd.inventariobox.Interfaces.IHistorial;
+import com.evertvd.inventariobox.interfaces.IHistorial;
 import com.evertvd.inventariobox.controller.App;
 import com.evertvd.inventariobox.modelo.Conteo;
-import com.evertvd.inventariobox.modelo.Conteo_;
 import com.evertvd.inventariobox.modelo.Historial;
 import com.evertvd.inventariobox.modelo.Historial_;
 

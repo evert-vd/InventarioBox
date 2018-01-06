@@ -2,7 +2,6 @@ package com.evertvd.inventariobox.vista.activitys;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,16 +11,14 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.transition.Explode;
-import android.transition.Fade;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.evertvd.inventariobox.Interfaces.IConteo;
-import com.evertvd.inventariobox.Interfaces.IHistorial;
-import com.evertvd.inventariobox.Interfaces.IProducto;
+import com.evertvd.inventariobox.interfaces.IConteo;
+import com.evertvd.inventariobox.interfaces.IHistorial;
+import com.evertvd.inventariobox.interfaces.IProducto;
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Conteo;
 import com.evertvd.inventariobox.modelo.Historial;
@@ -31,13 +28,12 @@ import com.evertvd.inventariobox.sqlite.SqliteHistorial;
 import com.evertvd.inventariobox.sqlite.SqliteProducto;
 import com.evertvd.inventariobox.utils.Utils;
 import com.evertvd.inventariobox.vista.adapters.ConteoAdapter;
-import com.evertvd.inventariobox.vista.adapters.RecyclerItemTouchHelper;
-import com.evertvd.inventariobox.vista.dialogs.RegistrarConteo;
+import com.evertvd.inventariobox.vista.adapters.RecyclerItemTouchHelperConteo;
 
 import java.util.List;
 
 
-public class ActivityConteo extends AppCompatActivity implements View.OnClickListener,RecyclerItemTouchHelper.RecyclerItemTouchHelperListener{
+public class ActivityConteo extends AppCompatActivity implements View.OnClickListener,RecyclerItemTouchHelperConteo.RecyclerItemTouchHelperListener{
 
     int request_code = 1;
     private FloatingActionButton btnAgregar;
@@ -73,10 +69,14 @@ public class ActivityConteo extends AppCompatActivity implements View.OnClickLis
         IConteo iConteo=new SqliteConteo(this);
         conteoList=iConteo.listarConteo(producto);
 
-        setTitle(String.valueOf(producto.getCodigo()));
+        setTitle("Registro de conteos");
 
         btnAgregar=(FloatingActionButton)findViewById(R.id.btnAgregar);
         btnAgregar.setOnClickListener(this);
+        if(producto.getZona().getTarget().getInventario().getTarget().getContexto()==2){
+            btnAgregar.setVisibility(View.GONE);
+        }
+
 
         abCodigo = (TextView) findViewById(R.id.txtAbCodigo);
         if(producto.getTipo().equalsIgnoreCase("App")){
@@ -104,7 +104,7 @@ public class ActivityConteo extends AppCompatActivity implements View.OnClickLis
         if(!conteoList.isEmpty()){
             txtSinRegistros.setVisibility(View.GONE);
         }else{
-            txtSinRegistros.setVisibility(View.GONE);
+            txtSinRegistros.setVisibility(View.VISIBLE);
         }
 
         // adding item touch helper
@@ -113,7 +113,7 @@ public class ActivityConteo extends AppCompatActivity implements View.OnClickLis
         // add pass ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT as param
         if(producto.getZona().getTarget().getInventario().getTarget().getContexto()!=2){
             //deslizar solo en inventario y diferencia
-            ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT, this);
+            ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelperConteo(0, ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT, this);
             new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
         }
     }
@@ -136,6 +136,7 @@ public class ActivityConteo extends AppCompatActivity implements View.OnClickLis
                         final int cantidadTemp = conteoTemp.getCantidad();
                         final int cantidadAbTemp = Integer.parseInt(abCantidad.getText().toString());
                         conteoTemp.setCantidad(0);
+                        conteoTemp.setValidado(1);
                         conteoTemp.setEstado(-1);//eliminado
                         //guardar historial
                         guardarHistorial(conteoTemp);
@@ -149,11 +150,12 @@ public class ActivityConteo extends AppCompatActivity implements View.OnClickLis
                             public void onClick(View view) {
                                 // undo is selected, restore the deleted item
                                 conteoTemp.setEstado(0);
+                                conteoTemp.setValidado(0);
                                 conteoTemp.setCantidad(cantidadTemp);
                                 iConteo.actualizarConteo(conteoTemp);
                                 //eliminar historial
                                 eliminarHistorial(conteoTemp);
-                                Log.e("cantidad", String.valueOf(iConteo.obtenerTotalConteo(producto)));
+                                //Log.e("cantidad", String.valueOf(iConteo.obtenerTotalConteo(producto)));
                                 actualizarTotalAb(cantidadAbTemp);
                                 mAdapter.restoreItem(conteoTemp, deletedIndex);
 
@@ -167,7 +169,7 @@ public class ActivityConteo extends AppCompatActivity implements View.OnClickLis
                         final IConteo iConteo = new SqliteConteo(getApplicationContext());
                         conteoTemp.setValidado(1);//validado
                         iConteo.actualizarConteo(conteoTemp);
-                        Snackbar snackbar = Snackbar.make(view, "Conteo validado", Snackbar.LENGTH_LONG);
+                        Snackbar snackbar = Snackbar.make(view, "Conteo validado", Snackbar.LENGTH_SHORT);
                         snackbar.setActionTextColor(Color.YELLOW);
                         mAdapter.notifyItemChanged(position);
                         snackbar.show();
@@ -229,6 +231,7 @@ public class ActivityConteo extends AppCompatActivity implements View.OnClickLis
                     actualizarTotalAb(iConteo.obtenerTotalConteo(producto));
                     //actualizacion del adapter
                     actualizarAdapter();
+                    txtSinRegistros.setVisibility(View.GONE);
                     //mAdapter.addItem(conteo);
                     Toast.makeText(this, "Conteo Registrado", Toast.LENGTH_SHORT).show();
             }else{
@@ -273,7 +276,7 @@ public class ActivityConteo extends AppCompatActivity implements View.OnClickLis
 
 
     private void actualizarTotalAb(int totalConteo){
-        abCantidad.setText(Utils.formatearNumero(totalConteo));
+        abCantidad.setText(String.valueOf(totalConteo));
     }
 
     private void actualizarAdapter(){

@@ -2,6 +2,7 @@ package com.evertvd.inventariobox.vista.adapters;
 
 import android.app.FragmentManager;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -101,8 +102,10 @@ public class ConteoAdapter extends RecyclerView.Adapter<ConteoAdapter.MyViewHold
             holder.view_estado.setVisibility(View.VISIBLE);
             if(conteo.getValidado()==0){
                 holder.txtEstado.setText("Por validar");
+                holder.txtEstado.setTypeface(null, Typeface.NORMAL);
             }else{
                 holder.txtEstado.setText("Validado");
+                holder.txtEstado.setTypeface(null, Typeface.BOLD);
             }
         }
     }

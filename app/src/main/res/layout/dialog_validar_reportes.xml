@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/colorGreyLighten_3">
+            android:background="@color/grey_lighten_3">
         <TextView
             android:id="@+id/txtMensaje2"
             android:layout_width="match_parent"
@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
-            android:textColor="@color/colorOrange"
+            android:textColor="@color/orange"
             android:text="Reemplazar"/>
 
         <TextView
@@ -81,7 +81,7 @@
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:textColor="@color/colorGreyDarken_2"
+            android:textColor="@color/grey_darken_2"
             android:text="Cancelar"
             />
         </LinearLayout>

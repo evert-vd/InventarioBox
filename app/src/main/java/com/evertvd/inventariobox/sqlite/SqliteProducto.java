@@ -1,9 +1,10 @@
 package com.evertvd.inventariobox.sqlite;
 
 import android.content.Context;
+import android.util.Log;
 
-import com.evertvd.inventariobox.Interfaces.IConteo;
-import com.evertvd.inventariobox.Interfaces.IProducto;
+import com.evertvd.inventariobox.interfaces.IConteo;
+import com.evertvd.inventariobox.interfaces.IProducto;
 import com.evertvd.inventariobox.controller.App;
 import com.evertvd.inventariobox.modelo.Conteo;
 import com.evertvd.inventariobox.modelo.Producto;
@@ -89,7 +90,7 @@ public class SqliteProducto implements IProducto {
     @Override
     public List<Producto> listarProductoZonaResumen(long idZona) {
         QueryBuilder<Producto> builder = productoBox.query();
-        builder.equal(Producto_.zonaId, idZona);//solo app
+        builder.equal(Producto_.zonaId, idZona);
         List<Producto> productoList = builder.build().find();
         return productoList;
     }
@@ -110,9 +111,11 @@ public class SqliteProducto implements IProducto {
     @Override
     public List<Producto> listarProductoDiferenciaZona(long idZona) {
         QueryBuilder<Producto> builder = productoBox.query();
-        builder.notEqual(Producto_.estado,0);
-        builder.equal(Producto_.zonaId, idZona);//solo app
+        builder.equal(Producto_.zonaId, idZona).and().equal(Producto_.estado,1);//0 sin diferencia, 1:con diferencia
         List<Producto> productoList = builder.build().find();
+        for (int i=0;i<productoList.size();i++){
+            Log.e("DIFCTX", String.valueOf(productoList.get(i).getCodigo()));
+        }
         return productoList;
     }
 

@@ -1,4 +1,4 @@
-package com.evertvd.inventariobox.Interfaces;
+package com.evertvd.inventariobox.interfaces;
 
 
 

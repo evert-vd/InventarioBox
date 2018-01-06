@@ -26,7 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.evertvd.inventariobox.Interfaces.IEmpresa;
+import com.evertvd.inventariobox.interfaces.IEmpresa;
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Empresa;
 import com.evertvd.inventariobox.sqlite.SqliteEmpresa;
@@ -54,7 +54,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setTitle("Iniciar Inventario");
+        setTitle("Iniciar Sesión    ");
 
         setContentView(R.layout.activity_login);
         spinnerEmpresa = (Spinner) findViewById(R.id.spinnerEmpresa);
@@ -235,7 +235,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         String mensaje3 = getResources().getString(R.string.mensaje_permiso);
 
         SpannableString mensaje = new SpannableString(mensaje1 + " " + mensaje2 + " " + mensaje3);
-        ForegroundColorSpan colorSpan = new ForegroundColorSpan(getResources().getColor(R.color.colorGreyDarken_2));// Puedes usar tambien .. new ForegroundColorSpan(Color.RED);
+        ForegroundColorSpan colorSpan = new ForegroundColorSpan(getResources().getColor(R.color.grey_darken_2));// Puedes usar tambien .. new ForegroundColorSpan(Color.RED);
         mensaje.setSpan(colorSpan, mensaje1.length() + 1, (mensaje1.length() + mensaje2.length() + 1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -263,7 +263,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         Button cancel = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
         if (cancel != null) {
             //b.setBackgroundColor(Color.CYAN);
-            cancel.setTextColor(getResources().getColor(R.color.colorGreyDarken_2));//color por código al boton cancelar del dialogo
+            cancel.setTextColor(getResources().getColor(R.color.grey_darken_2));//color por código al boton cancelar del dialogo
         }
     }
 
@@ -283,7 +283,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     }else{
                         verificarPermisos(view);
                     }
-
                 } else {
                     mensajeAccionCancelada();
                 }

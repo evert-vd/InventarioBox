@@ -4,8 +4,8 @@ import android.content.Context;
 import android.util.Log;
 
 import com.csvreader.CsvReader;
-import com.evertvd.inventariobox.Interfaces.IProducto;
-import com.evertvd.inventariobox.Interfaces.IZona;
+import com.evertvd.inventariobox.interfaces.IProducto;
+import com.evertvd.inventariobox.interfaces.IZona;
 import com.evertvd.inventariobox.modelo.Producto;
 import com.evertvd.inventariobox.modelo.Zona;
 import com.evertvd.inventariobox.sqlite.SqliteProducto;

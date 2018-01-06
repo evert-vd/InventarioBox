@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.evertvd.inventariobox.Interfaces.IConteo;
+import com.evertvd.inventariobox.interfaces.IConteo;
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Conteo;
 import com.evertvd.inventariobox.sqlite.SqliteConteo;

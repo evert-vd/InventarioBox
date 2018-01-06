@@ -34,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Código:"
-                    android:textColor="@color/colorGreyLighten_3"
+                    android:textColor="@color/grey_lighten_3"
                     android:layout_marginTop="2dp"
                     android:layout_marginLeft="12dp" />
 
@@ -53,7 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Zona"
-                    android:textColor="@color/colorGreyLighten_3"
+                    android:textColor="@color/grey_lighten_3"
                     android:layout_marginTop="2dp"
                     android:gravity="right" />
 
@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:layout_marginLeft="12dp"
-                    android:textColor="@color/colorGreyLighten_3"
+                    android:textColor="@color/grey_lighten_3"
                     android:text="Cantidad:" />
 
                 <TextView
@@ -92,7 +92,7 @@
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginLeft="4dp"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/white"
                     style="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle" />
 
                 <TextView
@@ -102,7 +102,7 @@
                     android:text="unidades"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="16dp"
-                    android:textColor="@color/colorGreyLighten_3"
+                    android:textColor="@color/grey_lighten_3"
                     android:layout_marginLeft="4dp" />
 
             </LinearLayout>
@@ -131,8 +131,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:src="@drawable/ic_add"
-        android:tint="@color/colorWhite"
-        app:backgroundTint="@color/grey_darken_4"
+        android:tint="@color/white"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"

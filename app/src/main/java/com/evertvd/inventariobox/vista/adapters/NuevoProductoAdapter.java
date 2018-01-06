@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.evertvd.inventariobox.R;
 import com.evertvd.inventariobox.modelo.Conteo;
+import com.evertvd.inventariobox.modelo.Producto;
 import com.evertvd.inventariobox.vista.activitys.ActivityConteo;
 import com.evertvd.inventariobox.vista.dialogs.DialogHistorialConteo;
 
@@ -26,37 +27,33 @@ import java.util.List;
 
 public class NuevoProductoAdapter extends RecyclerView.Adapter<NuevoProductoAdapter.MyViewHolder> {
     private Context context;
-    private List<Conteo> conteoList;
+    private List<Producto> productoList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView txtCantidad;
-        TextView txtFechaRegistro;
-        TextView txtEstado;
-        Context context1;
+        TextView txtCodigo;
+        TextView txtZona;
+        TextView txtDescripcion;
         public ImageView img_delete;
-        public RelativeLayout view_content, view_edit, view_delete, view_validate;
-        private LinearLayout view_estado;
+        public RelativeLayout view_content, view_delete;
 
 
         public MyViewHolder(View view) {
             super(view);
-            context1=context;
             //views
-            txtCantidad = view.findViewById(R.id.txtCantidad);
-            txtFechaRegistro = view.findViewById(R.id.txtFechaRegistro);
-            txtEstado = view.findViewById(R.id.txtEstado);
-            view_estado=(LinearLayout)view.findViewById(R.id.view_estado);
+            txtCodigo = view.findViewById(R.id.txtCodigo);
+            txtZona = view.findViewById(R.id.txtZona);
+            txtDescripcion = view.findViewById(R.id.txtDescripcion);
+
             img_delete=(ImageView)view.findViewById(R.id.delete_icon);
 
             //backgrounds
             //view = view.findViewById(R.id.view_content);
-            view_edit = view.findViewById(R.id.view_edit);
+            //view_edit = view.findViewById(R.id.view_edit);
             view_delete = view.findViewById(R.id.view_eliminar);
-            view_validate = view.findViewById(R.id.view_validate);
             view_content=view.findViewById(R.id.view_content);
 
 
-            view.setOnLongClickListener(new View.OnLongClickListener() {
+            /*view.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
                     int position=getLayoutPosition();
@@ -70,56 +67,51 @@ public class NuevoProductoAdapter extends RecyclerView.Adapter<NuevoProductoAdap
                     return true;// returning true instead of false, works for me
                 }
             });
-
+            */
         }
     }
 
 
-    public NuevoProductoAdapter(Context context, List<Conteo> cartList) {
+    public NuevoProductoAdapter(Context context, List<Producto> productoList) {
         this.context = context;
-        this.conteoList = cartList;
+        this.productoList = productoList;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_conteo, parent, false);
+                .inflate(R.layout.item_nuevo_producto, parent, false);
         return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        final Conteo conteo = conteoList.get(position);
-
-        holder.txtCantidad.setText(String.valueOf(conteo.getCantidad()));
-        holder.txtFechaRegistro.setText(conteo.getFechaRegistro());
-        if(conteo.getProducto().getTarget().getZona().getTarget().getInventario().getTarget().getContexto()==0){
-            holder.view_estado.setVisibility(View.GONE);
+        final Producto producto = productoList.get(position);
+        if(producto.getTipo().equalsIgnoreCase("App")){
+            holder.txtCodigo.setText("NN"+producto.getCodigo());
         }else{
-            holder.view_estado.setVisibility(View.VISIBLE);
-            if(conteo.getValidado()==0){
-                holder.txtEstado.setText("Por validar");
-            }else{
-                holder.txtEstado.setText("Validado");
-            }
+            holder.txtCodigo.setText(String.valueOf(producto.getCodigo()));
         }
+        holder.txtZona.setText(producto.getZona().getTarget().getNombre());
+        holder.txtDescripcion.setText(producto.getDescripcion());
+
     }
 
     @Override
     public int getItemCount() {
-        return conteoList.size();
+        return productoList.size();
     }
 
     public void removeItem(int position) {
-        conteoList.remove(position);
+        productoList.remove(position);
         // notify the item removed by position
         // to perform recycler view delete animations
         // NOTE: don't call notifyDataSetChanged()
         notifyItemRemoved(position);
     }
 
-    public void restoreItem(Conteo item, int position) {
-        conteoList.add(position, item);
+    public void restoreItem(Producto item, int position) {
+        productoList.add(position, item);
         // notify item added by position
         notifyItemInserted(position);
     }
@@ -129,9 +121,9 @@ public class NuevoProductoAdapter extends RecyclerView.Adapter<NuevoProductoAdap
         notifyItemChanged(position);
     }
 
-    public void addItem(Conteo conteo){
-        conteoList.add(conteo);
-        notifyItemInserted(conteoList.size());
+    public void addItem(Producto producto){
+        productoList.add(producto);
+        notifyItemInserted(productoList.size());
     }
 
     public void restorePosition(int position){

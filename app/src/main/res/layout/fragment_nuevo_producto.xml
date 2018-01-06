@@ -34,9 +34,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_gravity="end|right"
-            app:backgroundTint="@color/grey_darken_4"
             app:useCompatPadding="true"
-            android:tint="@color/colorWhite"
+            android:tint="@color/white"
             android:src="@drawable/ic_menu_add" />
 
     </RelativeLayout>
