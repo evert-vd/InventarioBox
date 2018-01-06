@@ -498,8 +498,6 @@ public class ActivityCalculadora extends AppCompatActivity {
         }else{
             arrayList2.add(cadena);
         }
-
-
     }
 
     public void guardarHistorial() {
