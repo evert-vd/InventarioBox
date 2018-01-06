@@ -486,7 +486,6 @@ public class ActivityCalculadora extends AppCompatActivity {
         }
     }
 
-
     public void crearHistorial(String cadena) {
         if(arrayList2.size()>=1){
             //valida que no se guarde la misma cantidad en el historial
